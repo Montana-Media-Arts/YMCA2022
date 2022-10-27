@@ -58,7 +58,12 @@
             <asp:Label ID="Label2" runat="server" Text="How long did you do this activity?"></asp:Label>
         </p>
         <p class="auto-style6">
-            <asp:TextBox ID="TextBox2" runat="server" CssClass="auto-style7" Height="35px" Width="175px" OnTextChanged="TextBox2_TextChanged"></asp:TextBox>
+            <asp:TextBox ID="TextBox2" runat="server" CssClass="auto-style7" Height="35px" Width="175px" ></asp:TextBox>
+        </p>
+        <p class="auto-style6">
+            Username</p>
+        <p class="auto-style6">
+            <asp:TextBox ID="TextBox3" runat="server" CssClass="auto-style7" Height="35px" Width="175px"></asp:TextBox>
         </p>
         <p class="auto-style8">
             <asp:Button ID="Button1" runat="server" BackColor="#FF9900" BorderColor="#33CCFF" BorderStyle="Outset" CssClass="auto-style9" Height="41px" Text="Log Out" Width="175px" OnClick="Button1_Click" />

@@ -20,32 +20,28 @@ namespace WebApplication2
         protected void Button1_Click(object sender, EventArgs e)
         {
             string username = TextBox1.Text;
-            string pwd = TextBox2.Text;
-            DataSet myDataSet = new DataSet();
-            string myConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
-            SqlConnection myConnection = new SqlConnection(myConnectionString);
-            myConnection.Open();
+            Database myData = new Database();
+          
             string MyQuery = "spUserVerification";
-            
-            SqlCommand myCommand = new SqlCommand(MyQuery);
-            SqlParameter[] myParameters = new SqlParameter[2];
+          
+            SqlParameter[] myParameters = new SqlParameter[1];
             myParameters[0] = new SqlParameter("username", username);
-            myParameters[1] = new SqlParameter("pwd", pwd);
-            myCommand.Parameters.AddRange(myParameters);
-            myCommand.Connection = myConnection;
-            myCommand.CommandType = CommandType.StoredProcedure;
-            SqlDataAdapter myAdapter = new SqlDataAdapter(myCommand);
-            myAdapter.Fill(myDataSet);
-            myConnection.Close();
-
+           
+            DataSet myDataSet = myData.getQueryWithParameters(MyQuery, myParameters);
+           
             if (myDataSet.Tables[0].Rows.Count > 0)
             {
+                int userID = Convert.ToInt32(myDataSet.Tables[0].Rows[0]["userID"]);
+                string MyQuery2 = "spInsertLogInTime";
+                 myParameters = new SqlParameter[1];
+                myParameters[0] = new SqlParameter("userID", userID);
+                myData.RunQueryWithParameters(MyQuery2,myParameters);
                 Response.Write("You are logged in");
-                Response.Redirect("Admin.aspx");
+                Response.Redirect("https://montana-media-arts.github.io/YMCA2022/AidansP5Experiences/index.html");
             }
             else 
                     {
-                Response.Redirect("CreateUser.aspx");
+                Response.Write("Please Log In");
             }
         }
 

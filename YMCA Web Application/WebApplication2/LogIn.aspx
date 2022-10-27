@@ -15,14 +15,8 @@
         .auto-style3 {
             font-size: xx-large;
         }
-        .auto-style5 {
-            font-size: xx-large;
-        }
         .auto-style6 {
             font-size: x-large;
-        }
-        .auto-style7 {
-            
         }
         body{
             background-image:url(/Images/missoula.jfif);
@@ -43,14 +37,12 @@
             <asp:TextBox ID="TextBox1" runat="server" BackColor="White" CssClass="auto-style2" Height="35px" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
         </p>
         <p>
-            &nbsp;</p>
-        <p style="height: 47px">
-            <asp:Label ID="Label3" runat="server" CssClass="auto-style5" Text="Password:"></asp:Label>
-        </p>
-        <asp:TextBox ID="TextBox2" runat="server" CssClass="auto-style7" Height="35px" Width="175px"></asp:TextBox>
-        <p>
             <asp:Button ID="Button1" runat="server" BackColor="#FF9900" BorderColor="#33CCFF" BorderStyle="Outset" CssClass="auto-style6" EnableTheming="True" Height="54px" OnClick="Button1_Click" Text="Log In" Width="139px" />
         </p>
+        <p style="height: 47px">
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
     </form>
 </body>
 </html>

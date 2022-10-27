@@ -14,20 +14,12 @@ namespace WebApplication2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string myConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
-            SqlConnection myConnection = new SqlConnection(myConnectionString);
-            myConnection.Open();
+           
             string MyQuery = "spGetUsers";
-            DataSet myDataSet = new DataSet();
+            Database myData = new Database();
             SqlCommand myCommand = new SqlCommand(MyQuery);
-            myCommand.Connection = myConnection;
-            myCommand.CommandType = CommandType.StoredProcedure ;
+           
 
-            SqlDataAdapter myAdapter = new SqlDataAdapter(myCommand);
-            myAdapter.Fill(myDataSet);
-            myConnection.Close();
-
-            
             // HttpCookie myCookie = Request.Cookies["userinfo"];
             // String userName = Request.QueryString["userName"];
             //String password = Session["secret"].ToString();
@@ -37,14 +29,29 @@ namespace WebApplication2
             //Response.Write(messageFromQueryString);
         }
 
-        protected void TextBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+    
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Response.Redirect("WebForm3.aspx");
+            string username = TextBox3.Text;
+            Database myData = new Database();
+
+            string MyQuery = "spUserVerification";
+
+            SqlParameter[] myParameters = new SqlParameter[1];
+            myParameters[0] = new SqlParameter("username", username);
+
+            DataSet myDataSet = myData.getQueryWithParameters(MyQuery, myParameters);
+            if(myDataSet.Tables[0].Rows.Count > 0)
+            {
+                int userID = Convert.ToInt32(myDataSet.Tables[0].Rows[0]["userID"]);
+                string MyQuery2 = "spInsertLogOutTime";
+                myParameters = new SqlParameter[1];
+                myParameters[0] = new SqlParameter("userID", userID);
+                myData.RunQueryWithParameters(MyQuery2, myParameters);
+                Response.Redirect("https://montana-media-arts.github.io/YMCA2022/AidansP5Experiences/index2.html");
+            }
+           
         }
     }
 }

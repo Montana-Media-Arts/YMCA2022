@@ -76,6 +76,7 @@
     <Content Include="LogIn.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CreateUser.aspx.cs">
       <DependentUpon>CreateUser.aspx</DependentUpon>
