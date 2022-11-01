@@ -15,10 +15,13 @@ namespace WebApplication2
         protected void Page_Load(object sender, EventArgs e)
         {
            
-            string MyQuery = "spGetUsers";
+            string MyQuery = "spGetActivities";
             Database myData = new Database();
-            SqlCommand myCommand = new SqlCommand(MyQuery);
-           
+            DataSet dataSet = myData.getQueryWithoutParameters(MyQuery);
+
+            GridView1.DataSource = dataSet.Tables[0];
+            GridView1.DataBind();
+
 
             // HttpCookie myCookie = Request.Cookies["userinfo"];
             // String userName = Request.QueryString["userName"];
@@ -29,7 +32,7 @@ namespace WebApplication2
             //Response.Write(messageFromQueryString);
         }
 
-    
+
 
         protected void Button1_Click(object sender, EventArgs e)
         {
@@ -52,6 +55,11 @@ namespace WebApplication2
                 Response.Redirect("https://montana-media-arts.github.io/YMCA2022/AidansP5Experiences/index2.html");
             }
            
+        }
+
+        protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          
         }
     }
 }

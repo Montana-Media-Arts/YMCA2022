@@ -48,12 +48,8 @@
         <p class="auto-style4">
             <asp:Label ID="Label1" runat="server" Text="What activity did you do today?"></asp:Label>
         </p>
-        <asp:RadioButtonList ID="RadioButtonList1" runat="server">
-            <asp:ListItem>Gaming</asp:ListItem>
-            <asp:ListItem>Robotics</asp:ListItem>
-            <asp:ListItem>Video Wall</asp:ListItem>
-            <asp:ListItem>Makers Space</asp:ListItem>
-        </asp:RadioButtonList>
+        <asp:GridView ID="GridView1" runat="server"></asp:GridView>
+
         <p class="auto-style5">
             <asp:Label ID="Label2" runat="server" Text="How long did you do this activity?"></asp:Label>
         </p>
@@ -61,6 +57,7 @@
             <asp:TextBox ID="TextBox2" runat="server" CssClass="auto-style7" Height="35px" Width="175px" ></asp:TextBox>
         </p>
         <p class="auto-style6">
+            
             Username</p>
         <p class="auto-style6">
             <asp:TextBox ID="TextBox3" runat="server" CssClass="auto-style7" Height="35px" Width="175px"></asp:TextBox>
