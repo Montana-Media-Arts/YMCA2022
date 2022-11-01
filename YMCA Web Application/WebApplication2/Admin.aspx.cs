@@ -14,21 +14,28 @@ namespace WebApplication2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string myConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
-            SqlConnection myConnection = new SqlConnection(myConnectionString);
-            myConnection.Open();
+            Database myData = new Database();
+           
             string MyQuery = "spGetUsers";
-            DataSet myDataSet = new DataSet();
-            SqlCommand myCommand = new SqlCommand(MyQuery);
-            myCommand.Connection = myConnection;
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            SqlDataAdapter myAdapter = new SqlDataAdapter(myCommand);
-            myAdapter.Fill(myDataSet);
-            myConnection.Close();
+            DataSet myDataSet = myData.getQueryWithoutParameters(MyQuery);
+            
 
             GridView1.DataSource = myDataSet.Tables[0];
             GridView1.DataBind();
+            string MyQuery2 = "spGetTotalTime";
+            DataSet myDataSet2 = myData.getQueryWithoutParameters(MyQuery2);
+
+
+            GridView2.DataSource = myDataSet2.Tables[0];
+            GridView2.DataBind();
+
+            int totalTime;
+            totalTime = 0;
+            for (int I = 0; I < myDataSet2.Tables[0].Rows.Count; I++)
+            {
+                totalTime = totalTime + Convert.ToInt32(myDataSet2.Tables[0].Rows[I]["timeDifference"]);
+            }
+            Label3.Text =Convert.ToString (totalTime);
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -37,21 +44,17 @@ namespace WebApplication2
             String password = TextBox2.Text;
             String dob = TextBox3.Text;
             String userID = TextBox4.Text;
-            string myConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
-            SqlConnection myConnection = new SqlConnection(myConnectionString);
-            myConnection.Open();
+            Database myData = new Database();
+           
             string MyQuery = "spUpdateUser";
-            Response.Write(MyQuery);
-            SqlCommand myCommand = new SqlCommand(MyQuery);
+            
+           
             SqlParameter[] myParameters = new SqlParameter[4];
             myParameters[0] = new SqlParameter("username", userName);
             myParameters[1] = new SqlParameter("pwd", password);
             myParameters[2] = new SqlParameter("dob", dob);
             myParameters[3] = new SqlParameter("userID", userID);
-            myCommand.Parameters.AddRange(myParameters);
-            myCommand.Connection = myConnection;
-            myCommand.CommandType = CommandType.StoredProcedure;
-            myCommand.ExecuteNonQuery();
+            myData.RunQueryWithParameters(MyQuery,myParameters);
 
             Response.Write("User Updated");
             //Response.Redirect("WebForm4.aspx?userName=" + userName);
@@ -60,20 +63,15 @@ namespace WebApplication2
         protected void Button2_Click(object sender, EventArgs e)
         {
             String userID = TextBox4.Text;
-            string myConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
-            SqlConnection myConnection = new SqlConnection(myConnectionString);
-            myConnection.Open();
+            Database myData = new Database();
             string MyQuery2 = "spDeleteUsers";
-            Response.Write(MyQuery2);
             
-            SqlCommand myCommand = new SqlCommand(MyQuery2);
+            
+           
             SqlParameter[] myParameters = new SqlParameter[1];
             myParameters[0] = new SqlParameter("userid",userID);
 
-            myCommand.Parameters.AddRange(myParameters);
-            myCommand.Connection = myConnection;
-            myCommand.CommandType = CommandType.StoredProcedure;
-            myCommand.ExecuteNonQuery();
+            myData.RunQueryWithParameters(MyQuery2, myParameters);
             Response.Write("User Deleted");
             //Response.Redirect("WebForm4.aspx?userName=" + userID);
         }
@@ -82,5 +80,7 @@ namespace WebApplication2
         {
             Response.Redirect("LogOut.aspx");
         }
+
+        
     }
 }

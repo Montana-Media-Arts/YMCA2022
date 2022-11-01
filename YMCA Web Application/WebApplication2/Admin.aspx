@@ -19,9 +19,24 @@
             Update User Info</p>
         
         <span class="auto-style1">
-        <asp:GridView ID="GridView1" runat="server">
+        <asp:GridView ID="GridView1" runat="server" >
         </asp:GridView>
         </span>
+        <p>
+            Total Activity Time</p>
+        <p>
+            <asp:GridView ID="GridView2" runat="server">
+            </asp:GridView>
+        </p>
+        <p>
+            <asp:Label ID="Label2" runat="server" Text="Total Time"></asp:Label>
+&nbsp;&nbsp;
+            <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
+        </p>
+        <p>
+            User Activity Times</p>
+        <p>
+            &nbsp;</p>
         <p>
             User ID</p>
         <p>
