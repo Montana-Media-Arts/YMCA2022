@@ -1,0 +1,26 @@
+
+
+body {
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: hsla(0, 5%, 5%, 1);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-image: linear-gradient(to right top, hsla(0, 5%, 15%, 0.5), hsla(0, 5%, 5%, 1));
+  
+  background-image: -moz-linear-gradient(to right top, hsla(0, 5%, 15%, 0.5), hsla(0, 5%, 5%, 1));
+}
+p{
+  text-align:center;
+  width:100%;
+  color:rgb(255, 255, 255);
+  font-size:6em;
+  text-shadow:1px 1px hsla(0,0%,5%,1),
+          -1px -1px hsla(0,0%,5%,1);
+  font-family: 'Poiret One';
+  letter-spacing: 6px;
+  text-align: center;
+  position: relative;
+  margin-top: 40vh;
+}
