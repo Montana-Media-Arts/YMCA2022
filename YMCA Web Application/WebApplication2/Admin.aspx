@@ -36,7 +36,9 @@
         <p>
             User Activity Times</p>
         <p>
-            &nbsp;</p>
+            <asp:GridView ID="GridView3" runat="server">
+            </asp:GridView>
+        </p>
         <p>
             User ID</p>
         <p>
@@ -46,10 +48,6 @@
             <asp:Label ID="Label1" runat="server" Text="Username"></asp:Label>
             <br />
             <asp:TextBox ID="TextBox1" runat="server" CssClass="auto-style1"></asp:TextBox>
-            <br />
-            <br />
-            Password<br />
-            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
             <br />
             <br />
             Date of Birth<br />

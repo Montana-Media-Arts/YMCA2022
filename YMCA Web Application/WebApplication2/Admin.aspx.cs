@@ -36,12 +36,20 @@ namespace WebApplication2
                 totalTime = totalTime + Convert.ToInt32(myDataSet2.Tables[0].Rows[I]["timeDifference"]);
             }
             Label3.Text =Convert.ToString (totalTime);
+
+            GridView1.DataSource = myDataSet.Tables[0];
+            GridView1.DataBind();
+            string MyQuery3 = "ActivityTimeSpent";
+            DataSet myDataSet3 = myData.getQueryWithoutParameters(MyQuery3);
+
+
+            GridView3.DataSource = myDataSet3.Tables[0];
+            GridView3.DataBind();
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
             String userName = TextBox1.Text;
-            String password = TextBox2.Text;
             String dob = TextBox3.Text;
             String userID = TextBox4.Text;
             Database myData = new Database();
@@ -49,11 +57,10 @@ namespace WebApplication2
             string MyQuery = "spUpdateUser";
             
            
-            SqlParameter[] myParameters = new SqlParameter[4];
+            SqlParameter[] myParameters = new SqlParameter[3];
             myParameters[0] = new SqlParameter("username", userName);
-            myParameters[1] = new SqlParameter("pwd", password);
-            myParameters[2] = new SqlParameter("dob", dob);
-            myParameters[3] = new SqlParameter("userID", userID);
+            myParameters[1] = new SqlParameter("dob", dob);
+            myParameters[2] = new SqlParameter("userID", userID);
             myData.RunQueryWithParameters(MyQuery,myParameters);
 
             Response.Write("User Updated");
