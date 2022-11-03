@@ -9,16 +9,16 @@ function preload()
 	console.log(pink.x);
 }
 function setup() {
-	createCanvas(800, 400);
- 
+	createCanvas(screen.width, screen.height);
+	
 }
 
 
 function draw() {
 	background(0); 
 	fill(255,255,255);
-	textAlign(CENTER);
-	text('You are logged in!', width / 2, height / 2);
+	//textAlign(CENTER);
+	//text('You are logged in!', width / 2, height / 2);
 	
 	frameRate(30);
 	if (mouse.x < pink.x - 10) {
