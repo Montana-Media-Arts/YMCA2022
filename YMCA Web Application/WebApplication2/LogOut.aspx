@@ -48,14 +48,65 @@
         <p class="auto-style4">
             <asp:Label ID="Label1" runat="server" Text="What activity did you do today?"></asp:Label>
         </p>
-        <asp:GridView ID="GridView1" runat="server"></asp:GridView>
 
-        <p class="auto-style5">
-            <asp:Label ID="Label2" runat="server" Text="How long did you do this activity?"></asp:Label>
-        </p>
-        <p class="auto-style6">
-            <asp:TextBox ID="TextBox2" runat="server" CssClass="auto-style7" Height="35px" Width="175px" ></asp:TextBox>
-        </p>
+        <!-- GridView for activities -->
+
+        <div>  
+        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False"   
+            BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px"   
+            CellPadding="4" ForeColor="Black" GridLines="Vertical">  
+            <AlternatingRowStyle BackColor="White" />  
+            <Columns>  
+                <asp:TemplateField HeaderText="ID">  
+                    <EditItemTemplate>  
+                        <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Activityid") %>'></asp:TextBox>  
+                    </EditItemTemplate>  
+                    <ItemTemplate>  
+                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("Activityid") %>'></asp:Label>  
+                    </ItemTemplate>  
+                </asp:TemplateField>  
+                <asp:TemplateField HeaderText="Activity Name">  
+                    <EditItemTemplate>  
+                        <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("ActivityName") %>'></asp:TextBox>  
+                    </EditItemTemplate>  
+                    <ItemTemplate>  
+                        <asp:Label ID="Label2" runat="server" Text='<%# Bind("ActivityName") %>'></asp:Label>  
+                    </ItemTemplate>  
+                </asp:TemplateField>  
+               
+                <asp:TemplateField HeaderText="Select Data">  
+                    <EditItemTemplate>  
+                        <asp:CheckBox ID="CheckBox1" runat="server" />  
+                    </EditItemTemplate>  
+                    <ItemTemplate>  
+                        <asp:CheckBox ID="CheckBox1" runat="server" />  
+                    </ItemTemplate>  
+                </asp:TemplateField>  
+                <asp:TemplateField HeaderText="Time Spent">  
+                    <EditItemTemplate>  
+                        <asp:TextBox ID="TextBox1" runat="server" CssClass="auto-style7" ></asp:TextBox> 
+                    </EditItemTemplate>  
+                    <ItemTemplate>  
+                        <asp:TextBox ID="TextBox1" runat="server" CssClass="auto-style7"></asp:TextBox>
+                    </ItemTemplate>  
+                </asp:TemplateField>  
+            </Columns>  
+            <FooterStyle BackColor="#CCCC99" />  
+            <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />  
+            <PagerStyle BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" />  
+            <RowStyle BackColor="#F7F7DE" />  
+            <SelectedRowStyle BackColor="#CE5D5A" Font-Bold="True" ForeColor="White" />  
+            <SortedAscendingCellStyle BackColor="#FBFBF2" />  
+            <SortedAscendingHeaderStyle BackColor="#848384" />  
+            <SortedDescendingCellStyle BackColor="#EAEAD3" />  
+            <SortedDescendingHeaderStyle BackColor="#575357" />  
+        </asp:GridView>  
+    
+      
+        <br />  
+      
+    </div>  
+        <!-- End Of GridView for activities -->
         <p class="auto-style6">
             
             Username</p>
