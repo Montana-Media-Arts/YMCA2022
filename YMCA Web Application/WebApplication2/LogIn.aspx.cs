@@ -12,9 +12,10 @@ namespace WebApplication2
 {
     public partial class WebForm5 : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+      
+            protected void Page_Load(object sender, EventArgs e)
         {
-
+           
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -37,7 +38,17 @@ namespace WebApplication2
                 myParameters[0] = new SqlParameter("userID", userID);
                 myData.RunQueryWithParameters(MyQuery2,myParameters);
                 Response.Write("You are logged in");
-                Response.Redirect("https://montana-media-arts.github.io/YMCA2022/AidansP5Experiences/index.html");
+               string MyQuery3 = "spGetExperience";
+                DataSet myData2 = myData.getQueryWithoutParameters(MyQuery3);
+                if (myData2.Tables[0].Rows.Count > 0)
+                {
+                    Random rd = new Random();
+
+                    int rand_num = rd.Next(0, myData2.Tables[0].Rows.Count);
+                    
+                    Response.Redirect(myData2.Tables[0].Rows[rand_num]["Experience Link"].ToString());
+                }
+                
             }
             else 
                     {
