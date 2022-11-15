@@ -1,0 +1,29 @@
+﻿<Properties StartupConfiguration="{BD211634-D3BF-4AE2-90E5-3CAD3D1D0D56}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WebApplication2/Admin.aspx">
+    <Files>
+      <File FileName="WebApplication2/Admin.aspx" Line="42" Column="12" />
+      <File FileName="WebApplication2/LogIn.aspx" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="WebApplication2" expanded="True">
+            <Node name="WebApplication2" expanded="True">
+              <Node name="LogOut.aspx" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.WebApplication2 PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

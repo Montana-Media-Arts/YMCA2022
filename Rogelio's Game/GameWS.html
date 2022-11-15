@@ -1,0 +1,174 @@
+
+<html>
+  <head>
+  	<title>WORM EATER</title>
+  </head>
+
+  <body style="background-color:black;">>
+    
+    <div id="score">0</div>
+    <canvas id="wormboard" width="400" height="400"></canvas>
+
+    <style>
+      #wormboard {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      #score {
+        text-align:center;
+        color:rgb(0, 68, 253);
+        font-size: 50px;
+      }
+    </style>
+  </body>
+  <script>
+    var board_border = 'Black';
+    var board_background = "DarkGray";
+    var worm_color = 'HotPink';
+    var worm_border = 'Purple';
+    
+    var worm = [
+      {x: 200, y: 200},
+    ]
+
+    var score = 0;
+    var changing_direction = false;
+    var food_x;
+    var food_y;
+    var dx = 10;
+    var dy = 0;
+    
+    
+    // CANVAS ELEMENT
+    var wormboard = document.getElementById("wormboard");
+    var wormboard_ctx = wormboard.getContext("2d");
+    main();
+
+    new_food();
+
+    document.addEventListener("keydown", change_direction);
+    
+    
+    // Border
+    function clear_board() {
+      wormboard_ctx.fillStyle = board_background;
+      wormboard_ctx.strokestyle = board_border;
+      wormboard_ctx.fillRect(0, 0, wormboard.width, wormboard.height);
+      wormboard_ctx.strokeRect(0, 0, wormboard.width, wormboard.height);
+    }
+    
+    function main() {
+
+        if (game_over()) return;
+
+        changing_direction = false;
+        setTimeout(function onTick() {
+        clear_board();
+        drawFood();
+        move_worm();
+        drawworm();
+        main();
+      }, 100)
+    }
+
+    //worm 
+    function drawworm() {
+      worm.forEach(drawwormPart)
+    }
+
+    //FOOD
+    function drawFood() {
+      wormboard_ctx.fillStyle = 'Red';
+      wormboard_ctx.strokestyle = 'darkgreen';
+      wormboard_ctx.fillRect(food_x, food_y, 10, 10);
+      wormboard_ctx.strokeRect(food_x, food_y, 10, 10);
+    }
+    
+    //worm part
+    function drawwormPart(wormPart) {
+      wormboard_ctx.fillStyle = worm_color;
+      wormboard_ctx.strokestyle = worm_border;
+      wormboard_ctx.fillRect(wormPart.x, wormPart.y, 10, 10);
+      wormboard_ctx.strokeRect(wormPart.x, wormPart.y, 10, 10);
+    }
+
+    //Game Over
+    function game_over() {
+      for (let i = 4; i < worm.length; i++) {
+        if (worm[i].x === worm[0].x && worm[i].y === worm[0].y) return true
+      }
+      var hitLeftWall = worm[0].x < 0;
+      var hitRightWall = worm[0].x > wormboard.width - 10;
+      var hitToptWall = worm[0].y < 0;
+      var hitBottomWall = worm[0].y > wormboard.height - 10;
+      return hitLeftWall || hitRightWall || hitToptWall || hitBottomWall
+    }
+
+    function random_food(min, max) {
+      return Math.round((Math.random() * (max-min) + min) / 10) * 10;
+    }
+
+    //Random Spawn for food
+    function new_food() {
+      food_x = random_food(0, wormboard.width - 10);
+      food_y = random_food(0, wormboard.height - 10);
+      worm.forEach(function has_worm_eaten_food(part) {
+        const has_eaten = part.x == food_x && part.y == food_y;
+        if (has_eaten) new_food();
+      });
+    }
+
+    function change_direction(event) {
+      var LEFT_KEY = 37;
+      var RIGHT_KEY = 39;
+      var UP_KEY = 38;
+      var DOWN_KEY = 40;
+      
+    
+      if (changing_direction) return;
+      changing_direction = true;
+      var keyPressed = event.keyCode;
+      var goingUp = dy === -10;
+      var goingDown = dy === 10;
+      var goingRight = dx === 10;
+      var goingLeft = dx === -10;
+      if (keyPressed === LEFT_KEY && !goingRight) {
+        dx = -10;
+        dy = 0;
+      }
+      if (keyPressed === UP_KEY && !goingDown) {
+        dx = 0;
+        dy = -10;
+      }
+      if (keyPressed === RIGHT_KEY && !goingLeft) {
+        dx = 10;
+        dy = 0;
+      }
+      if (keyPressed === DOWN_KEY && !goingUp) {
+        dx = 0;
+        dy = 10;
+      }
+    }
+
+    function move_worm() {
+      // worm BODY PART
+      var head = {x: worm[0].x + dx, y: worm[0].y + dy};
+            // ADD BODY PART
+            worm.unshift(head);
+      var has_eaten_food = worm[0].x === food_x && worm[0].y === food_y;
+      if (has_eaten_food) {
+        // Increase score
+        score += 10;
+        // SCORE
+        document.getElementById('score').innerHTML = score;
+        // FOOD
+        new_food();
+      } else {
+        worm.pop();
+      }
+    }
+    
+  </script>
+</html>
