@@ -7,6 +7,7 @@ function preload()
 	pink.ani.offset.y = 18;
 	pink.addAni('moving', 'assets/Walk001.png', 6);
 	console.log(pink.x);
+	
 }
 function setup() {
 	createCanvas(screen.width, screen.height);
@@ -31,6 +32,17 @@ function draw() {
 		pink.ani = 'moving';
 		pink.mirror.x = false; 
 		pink.vel.x = 2;
+
+		if (mouse.y < pink.y - 10) {
+		
+			pink.ani = 'moving';
+			//pink.mirror.x = true; 
+			pink.vel.y = -2;
+		} else if (mouse.y > pink.y + 10) {
+			// if mouse is to the right
+			pink.ani = 'moving';
+			//pink.mirror.x = false; 
+			pink.vel.y = 2;
 	} else {
 		
 		pink.ani = 'idle';
@@ -38,6 +50,6 @@ function draw() {
 	}
 	
 }
-
+}
 
 
