@@ -1,7 +1,7 @@
 let pink;
 function preload()
 {
-	pink = new Sprite(400, 150, 50, 100);
+	pink = new Sprite(400, 150, 50, 200);
 	//add animation
 	pink.addAni('idle','assets/Idle001.png', 4);
 	pink.ani.offset.y = 18;
@@ -18,9 +18,11 @@ function setup() {
 function draw() {
 	background(0); 
 	fill(255,255,255);
-	//textAlign(CENTER);
-	//text('You are logged in!', width / 2, height / 2);
-	
+	textAlign(CENTER);
+	text('Right click the mouse to make the monster bigger', width / 2, height / 2);
+	camera.on();
+	pink.moveTowards(mouse.x, mouse.y, 0.04);
+	pink.draw();
 	frameRate(30);
 	if (mouse.x < pink.x - 10) {
 		
@@ -49,6 +51,10 @@ function draw() {
 		pink.vel.x = 0;
 	}
 	
+	if (mouse.pressing()) camera.zoom = 2;
+	else camera.zoom = 0.5;
+
+	camera.off();
 }
 }
 
